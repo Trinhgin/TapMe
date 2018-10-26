@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+</head>
+
+<body>
+    <!-- Logo =========================================== -->
+    <div class="logo">
+
+        <img id="logo" src="../images/blacklogo.jpg" />
+    </div>
+
+    <!-- The Game ======================================-->
+
+    <!-- Tap Button -->
+    <section id="game">
+        <div class="tapme">
+            <button id="tapme" type="submit">TAP ME</button>
+        </div>
+    </section>
+
+    <!-- Create Scoreboard & Timer -->
+
+
+    <span class="score">0</span>
+    <!-- <span class="timer">0</span> -->
+    <span class="start">START!
+        <ol class="high-scores">
+        </ol>
+    </span>
+
+
+
+    <!-- Set Timer -->
+    <div class="timer">
+        <p id="timer"></p>
+    </div>
+
+    <!-- Leaderboard -->
+    <div id="container">
+
+        <div class="row">
+            <div class="name">Player1</div>
+            <div class="score">430</div>
+        </div>
+
+        <div class="row">
+            <div class="name">Player2</div>
+            <div class="score">580</div>
+        </div>
+
+        <div class="row">
+            <div class="name">Player3</div>
+            <div class="score">310</div>
+        </div>
+
+        <div class="row">
+            <div class="name">Player4</div>
+            <div class="score">640</div>
+        </div>
+
+        <div class="row">
+            <div class="name">Player5</div>
+            <div class="score">495</div>
+        </div>
+    </div>
+</body>
+
+<!-- Footer ===============================================-->
+<footer id="footer">
+    Created by: Trinh-Gin
+</footer>
+<br>
+<div class="contact">
+    <a href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
+    <a href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
+    <a href="https://www.google.com/gmail/"><img id="email" src="../images/mail2.png"></a>
+</div>
+
+
+
+</html>
+
+<!-- JavaScript============================================ -->
+<script>
+
+    //Set Timer============================================
+
+    var countDownDate = new Date("Oct 26, 2018 12:59:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+
+        var seconds = Math.floor((distance % (1000 * 15)) / 1000);
+
+        // Display the result in the element with id="timer"
+        document.getElementById("timer").innerHTML = seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "EXPIRED"; }
+    }, 1000);
+
+    //Responsive Leaderboard===========================================
+    document.addEventListener('DOMContentLoaded', () => {
+        let elements = []
+        let container = document.querySelector('#container')
+        // Add each row to the array
+        container.querySelectorAll('.row').forEach(el => elements.push(el))
+        // Clear the container
+        container.innerHTML = ''
+        // Sort the array from highest to lowest
+        elements.sort((a, b) => b.querySelector('.score').textContent - a.querySelector('.score').textContent)
+        // Put the elements back into the container
+        elements.forEach(e => container.appendChild(e))
+    })
+
+    //Responsive Tap Me Button==========================================
+
+
+</script>
