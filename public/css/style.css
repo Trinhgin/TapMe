@@ -2,7 +2,7 @@ body {
   background-color: white;
 }
 
-/* style logo ======================*/
+/* =================== style logo ======================*/
 #logo {
   height: auto;
   width: auto;
@@ -10,8 +10,102 @@ body {
   max-height: 60px;
 }
 
-/* style Timer =====================*/
-.timer {
+/* ==== style New Tap button, score, timer =================== */
+section#game .score {
+  display: block;
+  position: absolute;
+  padding-top: 10%;
+  margin-left: 3%;
+  top: 10px;
+  left: 10px;
+  font-size: 50px;
+}
+
+section#game .timer {
+  display: block;
+  padding-top: 10%;
+  position: absolute;
+  margin-right: 3%;
+  top: 10px;
+  right: 10px;
+  font-size: 50px;
+}
+
+section#game .tapme {
+  display: block;
+  padding-top: 10%;
+  padding-left: 25%;
+  text-align: center;
+  width: 50%;
+  cursor: pointer;
+}
+
+section#game #tapme {
+  text-align: center;
+  font-size: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 14px;
+}
+
+section#game .high-scores {
+  text-align: center;
+  font-size: 100px;
+  border-radius: 14px;
+}
+
+/* ================ style game background ================ */
+
+section#game {
+  width: 100%;
+  height: 300%;
+  max-width: 100%;
+  max-height: 300%;
+  overflow: hidden;
+  position: relative;
+  background-image: url("../images/background5.jpg");
+  background-position: 80% 90%, 10% 90%, left bottom, left top;
+  background-repeat: no-repeat, no-repeat, repeat-x, repeat-x;
+  position: relative;
+  color: #ffffff;
+  font-size: 30px;
+  font-family: "arial,sans-serif";
+}
+
+/* =================style footer========================= */
+#footer {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 150px;
+  padding-top: 10%;
+}
+
+/* ================ style contact info==================== */
+.contact {
+  text-align: center;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}
+
+/* ================== (Archived) style Tap Me button================== */
+/* .tapme {
+  text-align: center;
+  padding-top: 90px;
+} */
+
+/* #tapme {
+  text-align: center;
+  font-size: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 14px;
+} */
+
+/* ====================== (Archived) style Timer =====================*/
+/* .timer {
   margin-left: 50%;
 }
 
@@ -24,63 +118,50 @@ body {
   margin-left: 50%;
   width: 40%;
   float: right;
-}
+} */
 
-/* style Tap Me button================== */
-.tapme {
-  text-align: center;
-  padding-top: 90px;
-}
-
-#tapme {
-  text-align: center;
-  font-size: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 14px;
-}
-
-/* style leaderboard =======================*/
-#container {
+/* ============== (Archived) style leaderboard =======================*/
+/* #container {
   width: 600px;
   height: auto;
 }
 
-.row {
-  /* position: relative; */
-  display: table-row;
+.row { */
+/* position: relative; */
+/* display: table-row;
   width: 60%;
   height: 40px;
   border-bottom: 1px solid #afafaf;
   clear: left;
   padding-left: 50px;
   padding-right: 10px;
-}
+} */
 
-.name {
-  /* position: relative; */
-  /* display: inline-block; */
-  width: 50px;
-  /* line-height: 45px; */
-  /* float: left; */
-  display: table-cell;
+/* .name { */
+/* position: relative; */
+/* display: inline-block; */
+/* width: 50px; */
+/* line-height: 45px; */
+/* float: left; */
+/* display: table-cell;
   vertical-align: middle;
   padding-left: 30px;
   padding-right: 10px;
-}
+} */
 
-.score {
-  /* position: relative; */
-  /* display: inline-block; */
-  width: 30px;
-  /* float: left; */
-  display: table-cell;
-  vertical-align: middle;
-  /* padding-left: 50px; */
-  padding-right: 30px;
-}
+/* ============== style score board ============ */
+/* .score { */
+/* position: relative; */
+/* display: inline-block; */
+/* width: 30px; */
+/* float: left; */
+/* display: table-cell;
+  vertical-align: middle; */
+/* padding-left: 50px; */
+/* padding-right: 30px;
+} */
 
-.row:nth-child(1) {
+/* .row:nth-child(1) {
   background: gold;
 }
 
@@ -90,49 +171,4 @@ body {
 
 .row:nth-child(3) {
   background: #cd7f32;
-}
-
-/* style New Tap button, score, timer =================== */
-section#game .score {
-  display: block;
-  position: relative;
-  top: 10px;
-  left: 10px;
-}
-
-/* section#game .time {
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
 } */
-
-section#game .start {
-  display: block;
-  padding-top: 50%;
-  margin: 0 auto 0 auto;
-  text-align: center;
-  width: 50%;
-  cursor: pointer;
-}
-
-section#game .start .high-scores {
-  text-align: center;
-}
-
-/* style footer========================= */
-#footer {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 100px;
-}
-
-/* style contact info==================== */
-.contact {
-  text-align: center;
-}
-
-img {
-  width: 30px;
-  height: 30px;
-}
