@@ -10,6 +10,19 @@ body {
   max-height: 60px;
 }
 
+/* ==================== style signup ========================== */
+.signup {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 0;
+}
+
+input {
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 /* ==== style New Tap button, score, timer =================== */
 section#game .score {
   display: block;
@@ -31,7 +44,7 @@ section#game .timer {
   font-size: 50px;
 }
 
-section#game .tapme {
+section#game #tapme {
   display: block;
   padding-top: 10%;
   padding-left: 25%;
@@ -40,7 +53,7 @@ section#game .tapme {
   cursor: pointer;
 }
 
-section#game #tapme {
+section#game #tapmebutton {
   text-align: center;
   font-size: 100px;
   margin-left: 10px;

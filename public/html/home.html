@@ -4,6 +4,7 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body onload="tap()">
@@ -16,9 +17,16 @@
     <!-- The Game ======================================-->
 
     <!-- Tap Button -->
+    <form name="signup" action="/" method="POST" autocomplete="off">
+        <div class="signup">
+            <p id="signup">First, Your Name Please!</p>
+            <input type="text" placeholder="Thunder Cat" name="signup" required>
+        </div>
+    </form>
+
     <section id="game">
-        <div class="tapme">
-            <button id="tapme" type="submit">TAP ME</button>
+        <div id="tapme">
+            <button id="tapmebutton" type="submit">TAP ME</button>
             <div>
                 <ol class="high-scores">
                 </ol>
@@ -89,18 +97,42 @@
 
     // ======================= Create a Timer ==========================
 
-    var counter = 10;
-    document.getElementById("timer").innerHTML = counter + "s ";
+    var score = 0;
+    function countScore() {
+        score++;
+        var divData = document.getElementById("score");
+        divData.innerHTML = "Your Score is: (" + score + ")";
+    }
 
-    var timer = setInterval(function () {
-        console.log(counter);
-        counter--
-        document.getElementById("timer").innerHTML = counter + "s ";
-        if (counter === 0) {
-            console.log("GAME OVER!!");
-            clearInterval(timer)
-        }
-    }, 1000);
+    function showRemainingTime(timeRemaining) {
+        document.getElementById("timer").innerHTML = timeRemaining + "s ";
+    }
+
+    function startGame() {
+        var counter = 10;
+        showRemainingTime(counter)
+
+        var timer = setInterval(function () {
+            console.log(counter);
+            counter--
+            showRemainingTime(counter)
+            if (counter === 0) {
+                console.log("GAME OVER!!");
+                clearInterval(timer)
+            }
+        }, 1000);
+        $("#tapmebutton").off('click').click(() => {
+            countScore();
+        })
+    }
+
+    $("#tapmebutton").click(() => {
+        startGame();
+    });
+
+
+    //====== Keep track of number of times the Tap button being clicked =========
+
 
 
 
@@ -124,31 +156,6 @@
     // }
 
     //Second trick: turn the tap button to "Don't Tap"
-
-
-    // =============================(Archived) Set Timer==============================
-
-    // var countDownDate = new Date("Oct 26, 2018 12:59:25").getTime();
-
-    // Update the count down every 1 second
-    // var timer = setInterval(function () {
-
-    //     // Get todays date and time
-    //     var now = new Date().getTime();
-
-    //     // Find the distance between now and the count down date
-    //     var distance = countDownDate - now;
-
-    //     // Time calculations for days, hours, minutes and seconds
-
-    //     var seconds = Math.floor((distance % (1000 * 15)) / 1000);
-
-    //     // Display the result in the element with id="timer"
-    //     document.getElementById("timer").innerHTML = seconds + "s ";
-
-    //     // If the count down is finished, write some text
-    //     if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "EXPIRED"; }
-    // }, 1000);
 
     // ====================== (Archived) Responsive Leaderboard=========================
     // //Sort out the highest scores
