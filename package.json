@@ -1,0 +1,32 @@
+{
+  "name": "tapme",
+  "version": "1.0.0",
+  "description": "a simple and fun game. Player needs to tap the button",
+  "main": "home.js",
+  "scripts": {
+    "test": "tap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trinhgin/TapMe.git"
+  },
+  "keywords": [
+    "tap"
+  ],
+  "author": "Trinh Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Trinhgin/TapMe/issues"
+  },
+  "homepage": "https://github.com/Trinhgin/TapMe#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "js-cookie": "^2.2.0",
+    "nodemon": "^1.18.5",
+    "pg": "^7.6.0",
+    "sequelize": "^4.41.0"
+  }
+}

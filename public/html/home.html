@@ -4,22 +4,24 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/js.cookie.js"></script>
+
 </head>
 
-<body onload="tap()">
-    <!-- Logo =========================================== -->
+<body>
+    <!-- ==================== Create Logo ==========================-->
     <div class="logo">
 
         <img id="logo" src="../images/blacklogo.jpg" />
     </div>
 
-    <!-- The Game ======================================-->
+    <!-- ================== Create The Game ============================ -->
 
-    <!-- Tap Button -->
+    <!-- Create Tap Button -->
     <form name="signup" action="/" method="POST" autocomplete="off">
         <div class="signup">
-            <p id="signup">First, Your Name Please!</p>
+            <p id="signup">Your Name Please!</p>
             <input type="text" placeholder="Thunder Cat" name="signup" required>
         </div>
     </form>
@@ -27,13 +29,13 @@
     <section id="game">
         <div id="tapme">
             <button id="tapmebutton" type="submit">TAP ME</button>
-            <div>
+            <!-- <span>
                 <ol class="high-scores">
                 </ol>
-            </div>
+            </span> -->
         </div>
 
-        <!-- Set Timer -->
+        <!-- Create Timer -->
         <div class="timer">
             <p id="timer"></p>
         </div>
@@ -43,46 +45,46 @@
             <p id="score">0</p>
         </div>
 
+        <!-- Create Leaderboard -->
+        <div id="container">
+
+            <div class="row">
+                <div class="name">Player1</div>
+                <div class="playerscore">430</div>
+            </div>
+
+            <div class="row">
+                <div class="name">Player2</div>
+                <div class="playerscore">580</div>
+            </div>
+
+            <div class="row">
+                <div class="name">Player3</div>
+                <div class="playerscore">310</div>
+            </div>
+
+            <div class="row">
+                <div class="name">Player4</div>
+                <div class="playerscore">640</div>
+            </div>
+
+            <div class="row">
+                <div class="name">Player5</div>
+                <div class="playerscore">495</div>
+            </div>
+        </div>
     </section>
 
-    <!-- Leaderboard -->
-    <!-- <div id="container">
-
-        <div class="row">
-            <div class="name">Player1</div>
-            <div class="score">430</div>
-        </div>
-
-        <div class="row">
-            <div class="name">Player2</div>
-            <div class="score">580</div>
-        </div>
-
-        <div class="row">
-            <div class="name">Player3</div>
-            <div class="score">310</div>
-        </div>
-
-        <div class="row">
-            <div class="name">Player4</div>
-            <div class="score">640</div>
-        </div>
-
-        <div class="row">
-            <div class="name">Player5</div>
-            <div class="score">495</div>
-        </div>
-    </div> -->
 </body>
 
-<!-- Footer ===============================================-->
+<!-- ============================== Create Footer =============================-->
 <footer id="footer">
     Created by: Trinh-Gin
 </footer>
 <br>
 <!-- ====================================================== -->
 
-<!-- Contact Info ========================================= -->
+<!-- =============================Create Contact Info ========================= -->
 <div class="contact">
     <a href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
     <a href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
@@ -101,7 +103,8 @@
     function countScore() {
         score++;
         var divData = document.getElementById("score");
-        divData.innerHTML = "Your Score is: (" + score + ")";
+        divData.innerHTML = "Your Score: (" + score + ")";
+
     }
 
     function showRemainingTime(timeRemaining) {
@@ -119,6 +122,7 @@
             if (counter === 0) {
                 console.log("GAME OVER!!");
                 clearInterval(timer)
+                $("#tapmebutton").attr("disabled", true);
             }
         }, 1000);
         $("#tapmebutton").off('click').click(() => {
@@ -127,13 +131,29 @@
     }
 
     $("#tapmebutton").click(() => {
-        startGame();
+        // startGame();
+        var name = Cookies.get('name')
+        console.log("CHECK" + name)
+
+        console.log(Cookies.get())
+        if (name == null || name == undefined) {
+
+            name = prompt("Please enter your name:", "")
+            console.log("TEST" + name)
+            if (name != "" && name != null) {
+                $.cookie("name", name);
+                console.log(Cookies.get())
+            }
+
+        } else {
+            alert("Welcome again " + name);
+
+        }
     });
 
 
     //====== Keep track of number of times the Tap button being clicked =========
-
-
+    //Create Cookies
 
 
     // ======================= Responsive Tap Me Button===================
@@ -157,20 +177,23 @@
 
     //Second trick: turn the tap button to "Don't Tap"
 
+    // ========================== Start Again Button ===============================
+
+
     // ====================== (Archived) Responsive Leaderboard=========================
-    // //Sort out the highest scores
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     let elements = []
-    //     let container = document.querySelector('#container')
-    //     // Add each row to the array
-    //     container.querySelectorAll('.row').forEach(el => elements.push(el))
-    //     // Clear the container
-    //     container.innerHTML = ''
-    //     // Sort the array from highest to lowest
-    //     elements.sort((a, b) => b.querySelector('.score').textContent - a.querySelector('.score').textContent)
-    //     // Put the elements back into the container
-    //     elements.forEach(e => container.appendChild(e))
-    // })
+    //Sort out the highest scores
+    document.addEventListener('DOMContentLoaded', () => {
+        let elements = []
+        let container = document.querySelector('#container')
+        // Add each row to the array
+        container.querySelectorAll('.row').forEach(el => elements.push(el))
+        // Clear the container
+        container.innerHTML = ''
+        // Sort the array from highest to lowest
+        elements.sort((a, b) => b.querySelector('.playerscore').textContent - a.querySelector('.playerscore').textContent)
+        // Put the elements back into the container
+        elements.forEach(e => container.appendChild(e))
+    })
 
 
 
