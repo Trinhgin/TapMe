@@ -21,7 +21,7 @@
     <!-- Create Tap Button -->
     <div class="signup">
         <p id="signup">Your Name Please!</p>
-        <input type="text" placeholder="Thunder Cat" name="signup" required>
+        <input id="playername" type="text" placeholder="Thunder Cat" name="signup" required>
     </div>
 
     <section id="game">
@@ -48,28 +48,28 @@
         <div id="container">
 
             <div class="row">
-                <div class="name">Player1</div>
-                <div class="playerscore">430</div>
+                <div class="name"></div>
+                <div class="playerscore"></div>
             </div>
 
             <div class="row">
-                <div class="name">Player2</div>
-                <div class="playerscore">580</div>
+                <div class="name"></div>
+                <div class="playerscore"></div>
             </div>
 
             <div class="row">
-                <div class="name">Player3</div>
-                <div class="playerscore">310</div>
+                <div class="name"></div>
+                <div class="playerscore"></div>
             </div>
 
             <div class="row">
-                <div class="name">Player4</div>
-                <div class="playerscore">640</div>
+                <div class="name"></div>
+                <div class="playerscore"></div>
             </div>
 
             <div class="row">
-                <div class="name">Player5</div>
-                <div class="playerscore">495</div>
+                <div class="name"></div>
+                <div class="playerscore"></div>
             </div>
         </div>
     </section>
@@ -96,14 +96,14 @@
 <!-- ============================================== JavaScript============================================ -->
 <script>
 
-    // ======================= Create a Timer ==========================
+    // ========= Create a Timer, remember playername, send playername and score to server with AJAX ==========
 
+    var name = null;
     var score = 0;
     function countScore() {
         score++;
         var divData = document.getElementById("score");
         divData.innerHTML = "Your Score: (" + score + ")";
-
     }
 
     function showRemainingTime(timeRemaining) {
@@ -111,7 +111,10 @@
     }
 
     function startGame() {
-        var counter = 10;
+        name = getPlayerName();
+        rememberPlayerName(name);
+
+        var counter = 2;
         showRemainingTime(counter)
 
         var timer = setInterval(function () {
@@ -122,7 +125,8 @@
                 console.log("GAME OVER!!");
                 clearInterval(timer)
                 $("#tapmebutton").attr("disabled", true);
-                document.getElementById("message").innerHTML = "GAME OVER MAN!"
+                document.getElementById("message").innerHTML = "GAME OVER " + name + "!"
+                sendNameAndScoreToServer();
             }
         }, 1000);
         $("#tapmebutton").off('click').click(() => {
@@ -134,23 +138,60 @@
         startGame();
     });
 
-    //====== Keep track of number of times the Tap button being clicked =========
-    //Create Cookies to remember player's name
-
-    var name = Cookies.get('name')
-    console.log(Cookies.get())
-    if (name !== null) {
-        Cookies.set("name", name);
-    } else {
-        alert("Welcome again " + name);
+    function getPlayerName() {
+        var name = $("#playername").val();
+        if (name == null || name == undefined || name == "") {
+            name = "Unicorn";
+        }
+        return name;
     }
 
+    function rememberPlayerName(nameinput) {
+        Cookies.set("name", nameinput);
+    }
 
-    // ======================= Responsive Tap Me Button===================
+    function showPlayerName() {
+        var name = Cookies.get("name");
+        $("#playername").val(name);
+    }
+    showPlayerName();
 
-    //Define the tap button 
+    function sendNameAndScoreToServer() {
+        var sendNameAndScore = $.post('/', { "name": name, "score": score }, function (response) {
+            if (response.Error) {
+                throw error;
+            } else {
+                showLeaderboard(JSON.parse(response));
+            }
+        })
+    }
+
+    function showLeaderboard(resultArray) {
+        // TODO update HTML to show the leaderboard
+        let showResult = "";
+        for (i = 0; i < resultArray.length; i++) {
+            showResult += resultArray[i].name + " " + resultArray[i].score + " ";
+        }
+        $("#container").html(showResult);
+    }
+
+    // ====================== (Archived) Responsive Leaderboard=========================
+    //Sort out the highest scores
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     let elements = []
+    //     let container = document.querySelector('#container')
+    //     // Add each row to the array
+    //     container.querySelectorAll('.row').forEach(el => elements.push(el))
+    //     // Clear the container
+    //     container.innerHTML = ''
+    //     // Sort the array from highest to lowest
+    //     elements.sort((a, b) => b.querySelector('.playerscore').textContent - a.querySelector('.playerscore').textContent)
+    //     // Put the elements back into the container
+    //     elements.forEach(e => container.appendChild(e))
+    // })
+
+    // ======================= Additional Tap Tricks ===================
     //The tap button will have two tricks which have 2 different values
-    //A function is created and take the 2 values as its properties
     //First trick: randomnize the position of the tap buton & setInterval 
     // function tap() {
     //     tapButton = document.getElementById("tapme");
@@ -165,28 +206,10 @@
     //     picture.style.left = Math.round(Math.random() * spaceH) + "px";
     // }
 
-    //Second trick: turn the tap button to "Don't Tap"
+    //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
 
     // =========================== Create Difficulty Level of Game =======================
 
     // ========================== Try Again Button ===============================
-
-
-    // ====================== (Archived) Responsive Leaderboard=========================
-    //Sort out the highest scores
-    document.addEventListener('DOMContentLoaded', () => {
-        let elements = []
-        let container = document.querySelector('#container')
-        // Add each row to the array
-        container.querySelectorAll('.row').forEach(el => elements.push(el))
-        // Clear the container
-        container.innerHTML = ''
-        // Sort the array from highest to lowest
-        elements.sort((a, b) => b.querySelector('.playerscore').textContent - a.querySelector('.playerscore').textContent)
-        // Put the elements back into the container
-        elements.forEach(e => container.appendChild(e))
-    })
-
-
 
 </script>
