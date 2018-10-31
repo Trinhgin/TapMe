@@ -47,31 +47,9 @@
         <!-- Create Leaderboard -->
         <div id="container">
 
-            <div class="row">
-                <div class="name"></div>
-                <div class="playerscore"></div>
-            </div>
-
-            <div class="row">
-                <div class="name"></div>
-                <div class="playerscore"></div>
-            </div>
-
-            <div class="row">
-                <div class="name"></div>
-                <div class="playerscore"></div>
-            </div>
-
-            <div class="row">
-                <div class="name"></div>
-                <div class="playerscore"></div>
-            </div>
-
-            <div class="row">
-                <div class="name"></div>
-                <div class="playerscore"></div>
-            </div>
+            <div class="row"></div>
         </div>
+
     </section>
 
 </body>
@@ -157,58 +135,50 @@
     showPlayerName();
 
     function sendNameAndScoreToServer() {
-        var sendNameAndScore = $.post('/', { "name": name, "score": score }, function (response) {
+        var sendNameAndScore = $.post('/score', { "name": name, "score": score }, function (response) {
             if (response.Error) {
                 throw error;
             } else {
-                showLeaderboard(JSON.parse(response));
+                console.log(response)
+                showLeaderboard(response);
             }
         })
     }
 
-    function showLeaderboard(resultArray) {
-        // TODO update HTML to show the leaderboard
+    function showLeaderboard(responseArray) {
+        // Show the leaderboard
         let showResult = "";
-        for (i = 0; i < resultArray.length; i++) {
-            showResult += resultArray[i].name + " " + resultArray[i].score + " ";
+        for (i = 0; i < responseArray.length; i++) {
+            let showNameAndScore = `<div class="row">
+                    <span class="name">${responseArray[i].name}</span>
+                    <span class="playerscore">${responseArray[i].score}</span>
+                </div>
+                `;
+            showResult += showNameAndScore;
+
         }
+
         $("#container").html(showResult);
     }
 
-    // ====================== (Archived) Responsive Leaderboard=========================
-    //Sort out the highest scores
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     let elements = []
-    //     let container = document.querySelector('#container')
-    //     // Add each row to the array
-    //     container.querySelectorAll('.row').forEach(el => elements.push(el))
-    //     // Clear the container
-    //     container.innerHTML = ''
-    //     // Sort the array from highest to lowest
-    //     elements.sort((a, b) => b.querySelector('.playerscore').textContent - a.querySelector('.playerscore').textContent)
-    //     // Put the elements back into the container
-    //     elements.forEach(e => container.appendChild(e))
-    // })
-
-    // ======================= Additional Tap Tricks ===================
-    //The tap button will have two tricks which have 2 different values
+    // ======================= Tap Tricks ===================
+    //The tap button will have two tricks 
     //First trick: randomnize the position of the tap buton & setInterval 
-    // function tap() {
-    //     tapButton = document.getElementById("tapme");
-    //     spaceW = screen.height - picture.height;
-    //     spaceH = screen.width - picture.width;
+    function randomTapButton() {
+        tapButton = document.getElementById("tapme");
+        spaceW = screen.height - picture.height;
+        spaceH = screen.width - picture.width;
 
-    //     setInterval(moveButton, 1000);
-    // }
+        setInterval(moveButton, 1000);
+    }
 
-    // function moveButton() {
-    //     picture.style.top = Math.round(Math.random() * spaceW) + "px";
-    //     picture.style.left = Math.round(Math.random() * spaceH) + "px";
-    // }
+    function moveButton() {
+        picture.style.top = Math.round(Math.random() * spaceW) + "px";
+        picture.style.left = Math.round(Math.random() * spaceH) + "px";
+    }
 
     //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
 
-    // =========================== Create Difficulty Level of Game =======================
 
     // ========================== Try Again Button ===============================
 
