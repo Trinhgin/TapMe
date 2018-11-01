@@ -94,7 +94,10 @@
         name = getPlayerName();
         rememberPlayerName(name);
 
-        var counter = 1;
+        var moveButtonInterval = setInterval(moveButton, 1500);
+
+
+        var counter = 4;
         showRemainingTime(counter)
 
         var timer = setInterval(function () {
@@ -104,9 +107,13 @@
 
             if (counter === 0) {
                 console.log("GAME OVER!!");
+
+                clearInterval(moveButtonInterval)
                 clearInterval(timer)
+
                 $("#tapmebutton").attr("disabled", true);
-                document.getElementById("message").innerHTML = "GAME OVER " + name + "!"
+                $("#message").html(`GAME OVER ${name}!`)
+
                 sendNameAndScoreToServer();
             }
         }, 1000);
@@ -171,17 +178,14 @@
     //put the function randomTapButton while the tapme button is still abled
 
     function moveButton() {
-        button.style.top = Math.round(Math.random() * spaceW) + "px";
-        button.style.left = Math.round(Math.random() * spaceH) + "px";
-    }
-
-    function randomTapButton() {
-        tapButton = document.getElementById("tapmebutton");
-        spaceW = div.height - button.height;
-        spaceH = div.width - button.width;
-
-        setInterval(moveButton, 1000);
-
+        var screen = document.getElementById("tapme");
+        var button = document.getElementById("tapmebutton");
+        var spaceW = screen.clientHeight - button.clientHeight;
+        var spaceH = screen.clientWidth - button.clientWidth;
+        var moveTop = Math.round(Math.random() * spaceW) + "px";
+        var moveLeft = Math.round(Math.random() * spaceH) + "px";
+        button.style.top = moveTop;
+        button.style.left = moveLeft;
     }
 
     //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
