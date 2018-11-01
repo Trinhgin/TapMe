@@ -13,7 +13,13 @@
     <!-- ==================== Create Logo ==========================-->
     <div class="logo">
 
-        <img id="logo" src="../images/blacklogo.jpg" />
+        <img id="logo" src="../images/redlogonew.jpg" />
+        <!-- <p id="contact"> Created by: Trinh-Gin</p> -->
+        <a class="contact" href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
+        <a class="contact" href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
+        <a class="contact" href="https://www.google.com/gmail/"><img id="email" src="../images/mail2.png"></a>
+        <!-- <img id="logo" src="../images/blacklogo.jpg" /> -->
+
     </div>
 
     <!-- ================== Create The Game ============================ -->
@@ -26,12 +32,9 @@
 
     <section id="game">
         <div id="tapme">
-            <button id="tapmebutton" type="submit">TAP ME</button>
+            <button id="tapmebutton">TAP ME</button>
             <p id="message"></p>
-            <!-- <span>
-                <ol class="high-scores">
-                </ol>
-            </span> -->
+
         </div>
 
         <!-- Create Timer -->
@@ -45,28 +48,27 @@
         </div>
 
         <!-- Create Leaderboard -->
-        <div id="container">
-
-            <div class="row"></div>
-        </div>
+        <!-- <div id="container"> -->
+        <p id="container"></p>
+        <!-- </div> -->
 
     </section>
 
 </body>
 
 <!-- ============================== Create Footer =============================-->
-<footer id="footer">
+<!-- <footer id="footer">
     Created by: Trinh-Gin
 </footer>
-<br>
+<br> -->
 <!-- ====================================================== -->
 
 <!-- =============================Create Contact Info ========================= -->
-<div class="contact">
+<!-- <div class="contact">
     <a href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
     <a href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
     <a href="https://www.google.com/gmail/"><img id="email" src="../images/mail2.png"></a>
-</div>
+</div> -->
 <!-- ====================================================== -->
 
 </html>
@@ -92,13 +94,14 @@
         name = getPlayerName();
         rememberPlayerName(name);
 
-        var counter = 2;
+        var counter = 1;
         showRemainingTime(counter)
 
         var timer = setInterval(function () {
             console.log(counter);
             counter--
             showRemainingTime(counter)
+
             if (counter === 0) {
                 console.log("GAME OVER!!");
                 clearInterval(timer)
@@ -119,7 +122,7 @@
     function getPlayerName() {
         var name = $("#playername").val();
         if (name == null || name == undefined || name == "") {
-            name = "Unicorn";
+            name = "Thunder Cat";
         }
         return name;
     }
@@ -161,25 +164,38 @@
         $("#container").html(showResult);
     }
 
-    // ======================= Tap Tricks ===================
-    //The tap button will have two tricks 
+    // ========================== Tap Tricks ================================
     //First trick: randomnize the position of the tap buton & setInterval 
-    function randomTapButton() {
-        tapButton = document.getElementById("tapme");
-        spaceW = screen.height - picture.height;
-        spaceH = screen.width - picture.width;
-
-        setInterval(moveButton, 1000);
-    }
+    //Button needs to be called when game starts 
+    //setInterval of button trick must not override the setInterval of the main button
+    //put the function randomTapButton while the tapme button is still abled
 
     function moveButton() {
-        picture.style.top = Math.round(Math.random() * spaceW) + "px";
-        picture.style.left = Math.round(Math.random() * spaceH) + "px";
+        button.style.top = Math.round(Math.random() * spaceW) + "px";
+        button.style.left = Math.round(Math.random() * spaceH) + "px";
+    }
+
+    function randomTapButton() {
+        tapButton = document.getElementById("tapmebutton");
+        spaceW = div.height - button.height;
+        spaceH = div.width - button.width;
+
+        setInterval(moveButton, 1000);
+
     }
 
     //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
-
-
-    // ========================== Try Again Button ===============================
+//Button is disabled every 1 second
+//If click points deduct 2pt
+// create a function with if else statement 
+//function disableBtn (click){
+    // var disableBtn = $("#tapmebutton").click();
+    //var leftoverPoint = ??
+//if(disBtn !== click){
+    //point is the same
+// } else {
+    //return leftoverBtn -= 2; 
+// }
+// }
 
 </script>

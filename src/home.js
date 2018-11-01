@@ -61,7 +61,6 @@ app.post("/score", (req, res) => {
         order: [["score", "DESC"]],
         limit: 10
       }).then(allscores => {
-        console.log(allscores);
         res.send(allscores);
       });
       // var name = req.body.name;
