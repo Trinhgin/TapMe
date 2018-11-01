@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="/js/js.cookie.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./Home_files/style.css">
+    <script type="text/javascript" src="./Home_files/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="./Home_files/js.cookie.js"></script>
 
 </head>
 
-<body>
-    <!-- ==================== Create Logo ==========================-->
+<body style="">
+    <div id="tapme" style="
+    position: absolute;
+    height: 100%;
+    width: 100%;
+">
+            <button id="tapmebutton">TAP ME</button>
+            <p id="message"></p>
+
+        </div><!-- ==================== Create Logo ==========================-->
     <div class="logo">
 
-        <img id="logo" src="../images/redlogonew.jpg" />
+        <img id="logo" src="./Home_files/redlogonew.jpg">
         <!-- <p id="contact"> Created by: Trinh-Gin</p> -->
-        <a class="contact" href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
-        <a class="contact" href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
-        <a class="contact" href="https://www.google.com/gmail/"><img id="email" src="../images/mail2.png"></a>
+        <a class="contact" href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="./Home_files/linkedin1.png"></a>
+        <a class="contact" href="https://github.com/Trinhgin"><img id="github" src="./Home_files/github2.png"></a>
+        <a class="contact" href="https://www.google.com/gmail/"><img id="email" src="./Home_files/mail2.png"></a>
         <!-- <img id="logo" src="../images/blacklogo.jpg" /> -->
 
     </div>
@@ -27,15 +34,11 @@
     <!-- Create Tap Button -->
     <div class="signup">
         <p id="signup">Your Name Please!</p>
-        <input id="playername" type="text" placeholder="Thunder Cat" name="signup" required>
+        <input id="playername" type="text" placeholder="Thunder Cat" name="signup" required="">
     </div>
 
     <section id="game">
-        <div id="tapme">
-            <button id="tapmebutton">TAP ME</button>
-            <p id="message"></p>
-
-        </div>
+        
 
         <!-- Create Timer -->
         <div class="timer">
@@ -54,7 +57,7 @@
 
     </section>
 
-</body>
+
 
 <!-- ============================== Create Footer =============================-->
 <!-- <footer id="footer">
@@ -71,7 +74,7 @@
 </div> -->
 <!-- ====================================================== -->
 
-</html>
+
 
 <!-- ============================================== JavaScript============================================ -->
 <script>
@@ -198,4 +201,4 @@
 // }
 // }
 
-</script>
+</script></body></html>
