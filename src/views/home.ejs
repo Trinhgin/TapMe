@@ -11,6 +11,24 @@
 
 <body>
     <!-- ==================== Create Logo ==========================-->
+
+    <div id="tapme">
+        <button id="tapmebutton">TAP ME</button>
+        <p id="message"></p>
+
+        <!-- Create Scoreboard  -->
+    </div>
+
+    <div id="tracking">
+        <p id="score">0</p>
+
+        <!-- Create Timer -->
+        <p id="timer"></p>
+    </div>
+
+    <section id="game">
+        <p id="container"></p>
+    </section>
     <div class="logo">
 
         <img id="logo" src="../images/redlogonew.jpg" />
@@ -21,7 +39,6 @@
         <!-- <img id="logo" src="../images/blacklogo.jpg" /> -->
 
     </div>
-
     <!-- ================== Create The Game ============================ -->
 
     <!-- Create Tap Button -->
@@ -29,31 +46,6 @@
         <p id="signup">Your Name Please!</p>
         <input id="playername" type="text" placeholder="Thunder Cat" name="signup" required>
     </div>
-
-    <section id="game">
-        <div id="tapme">
-            <button id="tapmebutton">TAP ME</button>
-            <p id="message"></p>
-
-        </div>
-
-        <!-- Create Timer -->
-        <div class="timer">
-            <p id="timer"></p>
-        </div>
-
-        <!-- Create Scoreboard  -->
-        <div class="score">
-            <p id="score">0</p>
-        </div>
-
-        <!-- Create Leaderboard -->
-        <!-- <div id="container"> -->
-        <p id="container"></p>
-        <!-- </div> -->
-
-    </section>
-
 </body>
 
 <!-- ============================== Create Footer =============================-->
@@ -93,7 +85,7 @@
         name = getPlayerName();
         rememberPlayerName(name);
 
-        var moveButtonInterval = setInterval(moveButton, 1500);
+        var moveButtonInterval = setInterval(moveButton, 1000);
 
 
         var counter = 4;
@@ -116,6 +108,8 @@
                 sendNameAndScoreToServer();
             }
         }, 1000);
+
+        countScore();
         $("#tapmebutton").off('click').click(() => {
             countScore();
         })
