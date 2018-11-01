@@ -82,12 +82,11 @@
     var score = 0;
     function countScore() {
         score++;
-        var divData = document.getElementById("score");
-        divData.innerHTML = "Your Score: (" + score + ")";
+        var divData = $("#score").html(`Your Score: ${score}`)
     }
 
     function showRemainingTime(timeRemaining) {
-        document.getElementById("timer").innerHTML = timeRemaining + "s ";
+        $("#timer").html(`${timeRemaining}s`)
     }
 
     function startGame() {
@@ -178,8 +177,8 @@
     //put the function randomTapButton while the tapme button is still abled
 
     function moveButton() {
-        var screen = document.getElementById("tapme");
-        var button = document.getElementById("tapmebutton");
+        var screen = $("#tapme")[0]
+        var button = $("#tapmebutton")[0]
         var spaceW = screen.clientHeight - button.clientHeight;
         var spaceH = screen.clientWidth - button.clientWidth;
         var moveTop = Math.round(Math.random() * spaceW) + "px";
