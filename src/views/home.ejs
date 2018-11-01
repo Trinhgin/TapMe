@@ -47,20 +47,6 @@
     </div>
 </body>
 
-<!-- ============================== Create Footer =============================-->
-<!-- <footer id="footer">
-    Created by: Trinh-Gin
-</footer>
-<br> -->
-<!-- ====================================================== -->
-
-<!-- =============================Create Contact Info ========================= -->
-<!-- <div class="contact">
-    <a href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin1.png"></a>
-    <a href="https://github.com/Trinhgin"><img id="github" src="../images/github2.png"></a>
-    <a href="https://www.google.com/gmail/"><img id="email" src="../images/mail2.png"></a>
-</div> -->
-<!-- ====================================================== -->
 
 </html>
 
@@ -83,6 +69,7 @@
     function startGame() {
         name = getPlayerName();
         rememberPlayerName(name);
+        hideSignup()
 
         var moveButtonInterval = setInterval(moveButton, 1000);
 
@@ -174,7 +161,10 @@
         var moveTop = Math.round(Math.random() * spaceW) + "px";
         var moveLeft = Math.round(Math.random() * spaceH) + "px";
         button.css({ top: moveTop, left: moveLeft })
-        console.log(`left ${moveTop} ${moveLeft}`)
+    }
+    function hideSignup() {
+        $(".signup").hide()
+
     }
 
     //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
