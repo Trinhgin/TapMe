@@ -4,16 +4,15 @@ const Sequelize = require("sequelize");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const fs = require("fs");
-const port = process.env.POSTGRES_PORT || 5000;
+const port = process.env.PORT || 5000;
 const sequelize = new Sequelize(
-  "process.env.DATABASE_URL",
+  process.env.DATABASE_URL,
   // process.env.TAPME,
   // process.env.POSTGRES_USER,
   // process.env.POSTGRES_PASSWORD,
   {
     host: "localhost",
     dialect: "postgres",
-    port: process.env.POSTGRES_PORT,
     default: {
       timestamp: false
     }
