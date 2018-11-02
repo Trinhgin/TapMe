@@ -160,3 +160,7 @@ img {
   background: #cd7f32;
   font-family: "Patrick Hand", cursive;
 }
+
+#retry {
+  position: absolute;
+}
