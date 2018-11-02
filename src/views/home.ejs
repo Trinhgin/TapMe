@@ -70,7 +70,7 @@
     function startGame() {
         var score = 0;
         var name = getPlayerName();
-        var counter = 10;
+        var counter = 4;
 
         rememberPlayerName(name);
         hideSignup()
@@ -104,9 +104,7 @@
         $.when(startGame()).then(setTimeout(function () {
             showRetryButton()
             $("#tapmebutton").prop("disabled", false);
-        }, 10000)).then(function () {
-            $("#tapmebutton").prop("disabled", true)
-        })
+        }, 4000))
 
     });
 
