@@ -12,11 +12,12 @@ body {
   max-width: 60px;
   max-height: 60px;
   user-select: none;
+  position: absolute;
 }
 
 .contact {
   float: right;
-  position: absolute;
+  /* position: absolute; */
 }
 
 /* ==================== style Signup ========================== */
