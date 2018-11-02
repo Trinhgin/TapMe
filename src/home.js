@@ -51,7 +51,7 @@ app.post("/score", (req, res) => {
   var score = req.body.score;
   console.log(req.body);
 
-  //save the new name & score to database
+  //Save the new name & score to database
   Leaderboard.create({
     name: name,
     score: score
@@ -63,28 +63,12 @@ app.post("/score", (req, res) => {
       }).then(allscores => {
         res.send(allscores);
       });
-      // var name = req.body.name;
-      // req.body.name = {};
-      // var score = req.body.score;
-      // req.body.score = {};
-      // res.send({ name: name, score: score });
     })
     .catch(err => {
       console.error(err);
       res.redirect("/");
     });
 });
-
-//get the 10 highest scores from db
-// app.get("/", (req, res) => {
-//   res.render("/");
-// });
-// app.post("/", (req, res) => {});
-
-//show to front-end by sending JSON
-// app.post("/", (req, res) => {
-//   res.send(JSON.stringify([{ name: name, score: score }]));
-// });
 
 sequelize.sync();
 

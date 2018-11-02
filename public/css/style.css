@@ -84,12 +84,31 @@ input {
   user-select: none;
 }
 
+#retry {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  top: 20%;
+  width: 150px;
+  height: 60px;
+  margin-left: -75px;
+  margin-top: -30px;
+  text-align: top;
+  font-size: 25px;
+  border-radius: 14px;
+  font-family: "Patrick Hand", cursive;
+  border: 1px solid black;
+  user-select: none;
+  z-index: 1;
+}
+
 #message {
   color: #df3535;
   text-shadow: #afafaf;
   font-weight: bold;
   font-family: "Patrick Hand", cursive;
   font-size: 40px;
+  user-select: none;
 }
 
 /* ================ style Contact Info==================== */

@@ -6,41 +6,44 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="/js/js.cookie.js"></script>
+    <!-- <script type="text/javascript" src="/js/script.js"></script> -->
 
 </head>
 
 <body>
-    <!-- ==================== Create Logo ==========================-->
 
+    <!-- Create TapMe Button -->
     <div id="tapme">
         <button id="tapmebutton">TAP ME</button>
         <p id="message"></p>
-
-        <!-- Create Scoreboard  -->
+        <!-- Create Retry Button -->
+        <button id="retry" style="display:none">Try Me Again</button>
     </div>
 
+    <!-- Create Timer & Score-->
     <div id="tracking">
         <p id="score">0</p>
-
-        <!-- Create Timer -->
         <p id="timer"></p>
     </div>
-    <button id="retry">Try Me Again</button>
+
+
+
+    <!-- Create game section -->
     <section id="game">
         <p id="container"></p>
-    </section>
-    <div class="logo">
 
+
+    </section>
+
+    <!-- Create logo & Contact Info-->
+    <div class="logo">
         <img id="logo" src="../images/redlogonew.jpg" />
         <a class="contact" href="https://www.linkedin.com/in/tutrinhnguyenha/"><img id="linkedin" src="../images/linkedin2.png"></a>
         <a class="contact" href="https://github.com/Trinhgin"><img id="github" src="../images/github1.png"></a>
         <a class="contact" href="https://www.google.com/gmail/"><img id="email" src="../images/mail1.png"></a>
-        <!-- <img id="logo" src="../images/blacklogo.jpg" /> -->
-
     </div>
-    <!-- ================== Create The Game ============================ -->
 
-    <!-- Create Tap Button -->
+    <!-- Create Signup Area -->
     <div class="signup">
         <p id="signup">Your Name Please!</p>
         <input id="playername" type="text" placeholder="Thunder Cat" name="signup" required>
@@ -53,9 +56,9 @@
 <!-- ============================================== JavaScript============================================ -->
 <script>
 
-    // ========= Create a Timer, remember playername, send playername and score to server with AJAX ==========
+    // ========= Create Timer, Remember Playername, Send Playername and Score to Server with AJAX ==========
 
-
+    // var boolean = true;
     function showScore(score) {
         var divData = $("#score").html(`Your Score: ${score}`)
     }
@@ -86,21 +89,31 @@
             moveButton();
 
             if (counter === 0) {
-                console.log("GAME OVER!!");
+                // console.log("GAME OVER!!");
 
                 clearInterval(timer)
 
-                $("#tapmebutton").attr("disabled", true);
+                $("#tapmebutton").prop("disabled", true);
                 $("#message").html(`GAME OVER ${name}!`)
 
                 sendNameAndScoreToServer(name, score);
+                // boolean = false;
             }
-        }, 1000);
+        }, 1000)
+
     }
 
     $("#tapmebutton").click(() => {
-        startGame();
+        // startGame();
+        $.when(startGame()).then(setTimeout(function () {
+            showRetryButton()
+            $("#tapmebutton").prop("disabled", false);
+        }, 4000))
+
     });
+    // if (boolean == false) {
+    //     showRetryButton()
+    // }
 
     function getPlayerName() {
         var playername = $("#playername").val();
@@ -164,25 +177,33 @@
         $(".signup").hide()
     }
 
+    function hideGameOver() {
+        $("#message").hide()
+    }
+
+    // function hideLeaderboard() {
+    //     $("#")
+    // }
+
+    function showRetryButton() {
+        $("#retry").attr('style', '');
+    }
+
     $("#retry").click(() => {
         score = 0;
         name = null;
-        $("#tapmebutton").attr("disabled", false);
+        // $("#tapmebutton").attr("disabled", false);
+        hideGameOver();
         startGame();
     });
 
-    //Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
-//Button is disabled every 1 second
-//If click points deduct 2pt
-// create a function with if else statement 
-//function disableBtn (click){
-    // var disableBtn = $("#tapmebutton").click();
-    //var leftoverPoint = ??
-//if(disBtn !== click){
-    //point is the same
-// } else {
-    //return leftoverBtn -= 2; 
-// }
-// }
-
 </script>
+
+<!-- //TODO
+//style css for responsive for phones
+//clean up all files
+//put all JS codes to a js file in "public" folder
+//drop the db for demo
+//deploy on heroku
+//prepare presentation
+-->
