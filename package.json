@@ -5,7 +5,7 @@
   "main": "home.js",
   "scripts": {
     "test": "tap",
-    "start": "node home.js"
+    "start": "node src/home.js"
   },
   "engines": {
     "node": "10.9.0"
