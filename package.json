@@ -4,7 +4,11 @@
   "description": "a simple and fun game. Player needs to tap the button",
   "main": "home.js",
   "scripts": {
-    "test": "tap"
+    "test": "tap",
+    "start": "node home.js"
+  },
+  "engines": {
+    "node": "10.9.0"
   },
   "repository": {
     "type": "git",
