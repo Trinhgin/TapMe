@@ -17,7 +17,7 @@ body {
 
 .contact {
   float: right;
-  /* position: absolute; */
+  position: absolute;
 }
 
 /* ==================== style Signup ========================== */
