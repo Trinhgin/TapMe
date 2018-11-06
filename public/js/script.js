@@ -126,9 +126,9 @@ function hideGameOver() {
   $("#message").hide();
 }
 
-function hideLeaderboard() {
-  $("#container").hide();
-}
+// function hideLeaderboard() {
+//   $("#container").hide();
+// }
 
 function showRetryButton() {
   $("#retry").attr("style", "");
@@ -138,7 +138,7 @@ $("#retry").click(() => {
   score = 0;
   name = null;
   hideGameOver();
-  hideLeaderboard();
+  // hideLeaderboard();
   startGame();
 
   $("#retry").attr("style", "display:none");
