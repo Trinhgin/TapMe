@@ -1,53 +1,69 @@
-// ========= Create a Timer, remember playername, send playername and score to server with AJAX ==========
+// ========= Create Timer, Remember Playername, Send Playername and Score to Server with AJAX ==========
 
-var name = null;
-var score = 0;
-function countScore() {
-  score++;
-  var divData = document.getElementById("score");
-  divData.innerHTML = "Your Score: (" + score + ")";
+// var boolean = true;
+function showScore(score) {
+  var divData = $("#score").html(`Your Score: ${score}`);
 }
 
 function showRemainingTime(timeRemaining) {
-  document.getElementById("timer").innerHTML = timeRemaining + "s ";
+  $("#timer").html(`${timeRemaining}s`);
 }
 
 function startGame() {
-  name = getPlayerName();
-  rememberPlayerName(name);
+  var score = 0;
+  var name = getPlayerName();
+  var counter = 4;
 
-  var counter = 2;
+  rememberPlayerName(name);
+  hideSignup();
   showRemainingTime(counter);
+
+  showScore(score);
+  $("#tapmebutton")
+    .off("click")
+    .click(() => {
+      score++;
+      showScore(score);
+    });
 
   var timer = setInterval(function() {
     console.log(counter);
     counter--;
     showRemainingTime(counter);
+    moveButton();
+
     if (counter === 0) {
-      console.log("GAME OVER!!");
       clearInterval(timer);
-      $("#tapmebutton").attr("disabled", true);
-      document.getElementById("message").innerHTML = "GAME OVER " + name + "!";
-      sendNameAndScoreToServer();
+
+      $("#tapmebutton").prop("disabled", true);
+      $("#message").html(`GAME OVER ${name}!`);
+
+      sendNameAndScoreToServer(name, score);
     }
   }, 1000);
-  $("#tapmebutton")
-    .off("click")
-    .click(() => {
-      countScore();
-    });
 }
 
 $("#tapmebutton").click(() => {
-  startGame();
+  $.when(startGame()).then(
+    setTimeout(function() {
+      showRetryButton();
+      $("#tapmebutton").prop("disabled", false);
+    }, 4000)
+  );
 });
+// .then(
+//   setTimeout(function() {
+//     hideLeaderboard();
+//     $("#tapmebutton").prop("diabled", true);
+//   }, 4000)
+// );
 
 function getPlayerName() {
-  var name = $("#playername").val();
-  if (name == null || name == undefined || name == "") {
-    name = "Unicorn";
+  var playername = $("#playername").val();
+  if (playername == null || playername == undefined || playername == "") {
+    playername = "Thunder Cat";
   }
-  return name;
+  return playername;
 }
 
 function rememberPlayerName(nameinput) {
@@ -60,7 +76,7 @@ function showPlayerName() {
 }
 showPlayerName();
 
-function sendNameAndScoreToServer() {
+function sendNameAndScoreToServer(name, score) {
   var sendNameAndScore = $.post(
     "/score",
     { name: name, score: score },
@@ -80,32 +96,49 @@ function showLeaderboard(responseArray) {
   let showResult = "";
   for (i = 0; i < responseArray.length; i++) {
     let showNameAndScore = `<div class="row">
-                    <span class="name">${responseArray[i].name}</span>
-                    <span class="playerscore">${responseArray[i].score}</span>
-                </div>
-                `;
+                  <span class="name">${responseArray[i].name}</span>
+                  <span class="playerscore">${responseArray[i].score}</span>
+              </div>
+              `;
     showResult += showNameAndScore;
   }
 
   $("#container").html(showResult);
 }
 
-// ======================= Tap Tricks ===================
-//The tap button will have two tricks
+// ========================== Tap Tricks ================================
 //First trick: randomnize the position of the tap buton & setInterval
-function randomTapButton() {
-  tapButton = document.getElementById("tapme");
-  spaceW = screen.height - picture.height;
-  spaceH = screen.width - picture.width;
-
-  setInterval(moveButton, 1000);
-}
 
 function moveButton() {
-  picture.style.top = Math.round(Math.random() * spaceW) + "px";
-  picture.style.left = Math.round(Math.random() * spaceH) + "px";
+  var screen = $("#tapme");
+  var button = $("#tapmebutton");
+  var spaceW = screen.height() - button.height();
+  var spaceH = screen.width() - button.width();
+  var moveTop = Math.round(Math.random() * spaceW) + "px";
+  var moveLeft = Math.round(Math.random() * spaceH) + "px";
+  button.css({ top: moveTop, left: moveLeft });
 }
 
-//Second trick: turn the tap button to "Don't Tap" -> If tap points will be deducted
+function hideSignup() {
+  $(".signup").hide();
+}
 
-// ========================== Try Again Button ===============================
+function hideGameOver() {
+  $("#message").hide();
+}
+
+function hideLeaderboard() {
+  $("#container").hide();
+}
+
+function showRetryButton() {
+  $("#retry").attr("style", "");
+}
+
+$("#retry").click(() => {
+  score = 0;
+  name = null;
+  hideGameOver();
+  startGame();
+  $("#retry").attr("style", "display:none");
+});
