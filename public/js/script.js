@@ -47,6 +47,7 @@ $("#tapmebutton").click(() => {
   $.when(startGame()).then(
     setTimeout(function() {
       showRetryButton();
+      hideLeaderboard();
       $("#tapmebutton").prop("disabled", false);
     }, 4000)
   );
