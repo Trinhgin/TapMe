@@ -43,21 +43,22 @@ function startGame() {
   }, 1000);
 }
 
-$("#tapmebutton").click(() => {
-  $.when(startGame()).then(
+$("#tapmebutton")
+  .click(() => {
+    $.when(startGame()).then(
+      setTimeout(function() {
+        showRetryButton();
+        // hideLeaderboard();
+        $("#tapmebutton").prop("disabled", false);
+      }, 4000)
+    );
+  })
+  .then(
     setTimeout(function() {
-      showRetryButton();
       hideLeaderboard();
-      $("#tapmebutton").prop("disabled", false);
+      $("#tapmebutton").prop("diabled", true);
     }, 4000)
   );
-});
-// .then(
-//   setTimeout(function() {
-//     hideLeaderboard();
-//     $("#tapmebutton").prop("diabled", true);
-//   }, 4000)
-// );
 
 function getPlayerName() {
   var playername = $("#playername").val();
