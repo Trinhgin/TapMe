@@ -53,12 +53,10 @@ $("#tapmebutton")
       }, 4000)
     );
   })
-  .then(
-    setTimeout(function() {
-      hideLeaderboard();
-      $("#tapmebutton").prop("diabled", true);
-    }, 4000)
-  );
+  .then(function() {
+    hideLeaderboard();
+    $("#tapmebutton").prop("diabled", true);
+  });
 
 function getPlayerName() {
   var playername = $("#playername").val();
