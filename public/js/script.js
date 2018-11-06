@@ -43,20 +43,19 @@ function startGame() {
   }, 1000);
 }
 
-$("#tapmebutton")
-  .click(() => {
-    $.when(startGame()).then(
-      setTimeout(function() {
-        showRetryButton();
-        // hideLeaderboard();
-        $("#tapmebutton").prop("disabled", false);
-      }, 4000)
-    );
-  })
-  .then(function() {
-    hideLeaderboard();
-    $("#tapmebutton").prop("diabled", true);
-  });
+$("#tapmebutton").click(() => {
+  $.when(startGame()).then(
+    setTimeout(function() {
+      showRetryButton();
+      // hideLeaderboard();
+      $("#tapmebutton").prop("disabled", false);
+    }, 4000)
+  );
+});
+// .then(function() {
+//   hideLeaderboard();
+//   $("#tapmebutton").prop("diabled", true);
+// });
 
 function getPlayerName() {
   var playername = $("#playername").val();
@@ -139,6 +138,8 @@ $("#retry").click(() => {
   score = 0;
   name = null;
   hideGameOver();
+  hideLeaderboard();
   startGame();
+
   $("#retry").attr("style", "display:none");
 });
