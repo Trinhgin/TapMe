@@ -52,8 +52,8 @@
 
 
 </html>
+<script>
 
-<Script>
     // ========= Create Timer, Remember Playername, Send Playername and Score to Server with AJAX ==========
 
     // Show Score, Timer, Leaderboard
@@ -69,10 +69,10 @@
         let showResult = "";
         for (i = 0; i < responseArray.length; i++) {
             let showNameAndScore = `<div class="row">
-                  <span class="name">${responseArray[i].name}</span>
-                  <span class="playerscore">${responseArray[i].score}</span>
-              </div>
-              `;
+                <span class="name">${responseArray[i].name}</span>
+                <span class="playerscore">${responseArray[i].score}</span>
+            </div>
+            `;
             showResult += showNameAndScore;
         }
 
@@ -94,10 +94,7 @@
 
     //  Retry Button
     function showRetryButton() {
-        $("#retry").attr("style", "")
-        // .then(() => {
-        //     $("#tapmebutton").prop("disabled", true)
-        // })
+        $("#retry").attr("style", "");
     }
 
     $("#retry").click(() => {
@@ -110,11 +107,6 @@
         $("#retry").attr("style", "display:none");
     });
 
-    //Blur function to avoid Enter & Space buttons are pressed 
-    // function blurTapMe() {
-    //     $("#tapmebutton").blur()
-    // }
-
     //Start Game functionalities
     function startGame() {
         var score = 0;
@@ -126,11 +118,11 @@
         showRemainingTime(counter);
 
         showScore(score);
-        $("#tapmebutton").prop("disabled", false)
+        $("#tapmebutton").prop("disabled", false);
         $("#tapmebutton")
             .off("click")
             .click(() => {
-                $("#tapmebutton").blur()
+                $("#tapmebutton").blur();
                 score++;
                 showScore(score);
             });
@@ -153,15 +145,8 @@
     }
 
     $("#tapmebutton").click(() => {
-
-        startGame()
-        // .then(
-        //     setTimeout(function () {
-
-        //         $("#tapmebutton").prop("disabled", false);
-        //     }, 4000)
-        // );
-    })
+        startGame();
+    });
 
     //Get & remember player's name & score to db
     function getPlayerName() {
@@ -210,6 +195,6 @@
         button.css({ top: moveTop, left: moveLeft });
     }
 
-    //Second trick: disable tapmebutton randomly, if clicks points will be deducted
+//Second trick: disable tapmebutton randomly, if clicks points will be deducted
 
-</Script>
+</script>
