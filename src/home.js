@@ -4,15 +4,15 @@ const Sequelize = require("sequelize");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const fs = require("fs");
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 const sequelize = new Sequelize(
-  process.env.DATABASE_URL,
-  // process.env.TAPME,
-  // process.env.POSTGRES_USER,
-  // process.env.POSTGRES_PASSWORD,
+  // process.env.DATABASE_URL,
+  process.env.TAPME,
+  process.env.POSTGRES_USER,
+  process.env.POSTGRES_PASSWORD,
   {
     host: "localhost",
-    // host: process.env.POSTGRES_HOST,
+    host: process.env.POSTGRES_HOST,
     dialect: "postgres",
     default: {
       timestamp: false
@@ -74,10 +74,10 @@ app.post("/score", (req, res) => {
 
 sequelize.sync({ force: true });
 
-// app.listen(3000, () => {
-//   console.log("App is running on port 3000");
-// });
-
-app.listen(port, () => {
-  console.log("App is running on port 3000" + port);
+app.listen(3000, () => {
+  console.log("App is running on port 3000");
 });
+
+// app.listen(port, () => {
+//   console.log("App is running on port 3000" + port);
+// });

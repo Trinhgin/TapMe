@@ -86,6 +86,14 @@ input {
   user-select: none;
 }
 
+#tapmebutton.disabled {
+  background: red;
+}
+
+input[type="text"]:disabled {
+  background: #dddddd;
+}
+
 #retry {
   position: absolute;
   width: 150px;
