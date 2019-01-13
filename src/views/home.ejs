@@ -77,20 +77,11 @@
     let showResult = "";
     for (i = 0; i < responseArray.length; i++) {
       let showNameAndScore = `<div class="row">
-                                                                                        <span class="name">${
-                                                                                          responseArray[
-                                                                                            i
-                                                                                          ]
-                                                                                            .name
-                                                                                        }</span>
-                                                                                        <span class="playerscore">${
-                                                                                          responseArray[
-                                                                                            i
-                                                                                          ]
-                                                                                            .score
-                                                                                        }</span>
-                                                                                    </div>
-                                                                                    `;
+                              <span class="name">${responseArray[i].name}</span>
+                              <span class="playerscore">${
+                                responseArray[i].score
+                              }</span>
+                               </div>`;
       showResult += showNameAndScore;
     }
     $("#container").html(showResult);
